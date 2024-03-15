@@ -12,9 +12,9 @@ if(!isset($_SESSION['logado'])){
 
  
        $sql = "SELECT * FROM noticias AS n INNER JOIN categorias AS c ON n.id_categoria = c.id_categoria  WHERE estado = '1' AND id_usuario = '$id'";
-		   $result = $ligation->prepare($sql);
-		   $result->execute();     
-		   $data =  $result->fetchall(PDO::FETCH_ASSOC);
+	   $result = $ligation->prepare($sql);
+	   $result->execute();     
+	   $data =  $result->fetchall(PDO::FETCH_ASSOC);
 
          $culture = false;
          $sports = false; 

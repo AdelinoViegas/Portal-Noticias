@@ -1,0 +1,11 @@
+Painel de administrador
+  
+Email : admin@gmail.com
+password: 123
+
+
+
+Painel de usuario
+
+Email: user@gmail.com
+password:000

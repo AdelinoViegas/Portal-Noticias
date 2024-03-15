@@ -32,8 +32,6 @@ if(!isset($_SESSION['logado'])){
           for($l=0; $l<count($data); $l++){
 
 
-
-
              if($data[$l]['nome_categoria'] === 'culture'){
                 if($culture === false){
                   $array[] = 'culture';

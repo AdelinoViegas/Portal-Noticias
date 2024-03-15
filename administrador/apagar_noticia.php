@@ -20,8 +20,6 @@ $id = $_SESSION['id_noticia'];
   if($result){
       header('Location: ver_noticia.php');
   }
-
-
-       
+      
 
  ?>

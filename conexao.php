@@ -8,5 +8,5 @@ $password = "";
 
 $ligation = new PDO($data_mysql,$user,$password);
 
- ?>
+?>
 
