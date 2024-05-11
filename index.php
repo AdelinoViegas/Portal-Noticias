@@ -1,17 +1,13 @@
 <?php
 
-
-require_once "conexao.php";
-
-
 session_start();
-   
+require_once "conexao.php";
 
    if(isset($_POST['enviar-dados']) ){
       
       global $passwordCripto;
       $erros = array();
-       
+
       $email = filter_input(INPUT_POST,'txtemail',FILTER_SANITIZE_EMAIL);
 
       $password = filter_input(INPUT_POST,'txtpassword',FILTER_SANITIZE_SPECIAL_CHARS); 
@@ -32,7 +28,6 @@ session_start();
  
 
       }
-     
      
       $sql = "SELECT * FROM usuarios WHERE email LIKE '$email' AND 
        senha LIKE '$passwordCripto'";
@@ -60,17 +55,10 @@ session_start();
                         $_SESSION['logado'] = true;
                         $_SESSION['id_usuario'] = $dados['id_usuario'];
                    header('Location: usuario/home.php');
-                }
-                     
+                }                  
         }
-
     }
-
-
 }
-
-
-
   ?>
 
 
@@ -86,12 +74,10 @@ session_start();
 <body>
 
 <div id="formlog">
-     
       <div class="logo">
         <span id="text1">news</span>
         <span id="text2">press</span>
       </div>
-
       <?php
         if(!empty($erros)){
           foreach($erros as $value){

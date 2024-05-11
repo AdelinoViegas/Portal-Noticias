@@ -1,8 +1,5 @@
-
 <div class="border-top"></div>
-
 <footer>
-
      	<div class="footer_logo">
  	  		<span id="text1">news</span>
  	   		<span id="text2">press</span>
@@ -19,7 +16,6 @@
  			</div>
  			<img src="../imagem/google_maps.png" alt="imgGoogleMaps">
  		</div>
-
 	    <ul class="footer_menu">
 	 	   <li><a href="home.php">Home</a></li>
 	 	   <li><a href="business.php">Business</a></li>	
@@ -28,10 +24,7 @@
 	 	   <li><a href="life&style.php">Life & Style</a></li>
 	 	   <li><a href="culture.php">Culture</a></li>		
         </ul>
-        
         <h3>NewsLetter</h3>
-
-        
         	<div class="contact01">
         		<input type="text" name="txtnewsletter" placeholder="E-mail">
         		<button>Send</button>
@@ -52,8 +45,5 @@
                 <img src="../imagem/youtube.png" alt="imgfooter04">
                 <img src="../imagem/twiter.png" alt="imgfooter05">
             </div>
-
 </footer>
-
-
 <script src="../js/script.js"></script>
