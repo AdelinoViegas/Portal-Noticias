@@ -25,8 +25,6 @@ require_once "conexao.php";
       if(password_verify($password,$estado)){
            $passwordCripto = $estado;
        }
- 
-
       }
      
       $sql = "SELECT * FROM usuarios WHERE email LIKE '$email' AND 
