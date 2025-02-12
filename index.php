@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once "conexao.php";
 
@@ -56,9 +55,7 @@ require_once "conexao.php";
                 }                  
         }
     }
-}
-  ?>
-
+}?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
