@@ -3,6 +3,6 @@
   $data_mysql = $mysql; 
   $user = "root";
   $password = "";
-  $ligation = new PDO($data_mysql,$user,$password);
+  $conection = new PDO($data_mysql,$user,$password);
 ?>
 
