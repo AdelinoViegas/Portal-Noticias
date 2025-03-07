@@ -69,7 +69,7 @@ $categories = getCategories($conection);
 	$consult->bindParam(":id", $id, PDO::PARAM_STR);
 	$consult->execute();
 	$data = $consult->fetchall(PDO::FETCH_ASSOC);
-  
+
 	if (count($data) > 0) {
 		if ($data['category_name'] === 'life & style') {
 			$data['category_name'] = 'life&style';
@@ -164,7 +164,6 @@ $categories = getCategories($conection);
 		<article>
 			<div class="Business">
 				<h2>Business</h2>
-
 				<?php
 				$data = getNews($conection, "business");
 
