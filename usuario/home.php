@@ -1,26 +1,14 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/getCategories.php";
+require_once "../features/getNews.php";
 
 if (!isset($_SESSION['logged'])) {
 	header("Location: ../index.php");
 }
 
-$id = $_SESSION['user_id'];
-$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id  WHERE _state = '1' AND user_id = :id";
-$consult = $conection->prepare($sql);
-$consult->bindParam(":id", $id, PDO::PARAM_STR);
-$consult->execute();
-$data = $consult->fetchall(PDO::FETCH_ASSOC);
-$categories = [];
-
-if (count($data) > 0) {
-	for ($l = 0; $l < count($data); $l++) {
-		if (!in_array($data[$l]['category_name'], $categories)) {
-				array_push($categories,$data[$l]['category_name']);
-		} 
-	}
-}
+$categories = getCategories($conection);
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +68,8 @@ if (count($data) > 0) {
 	$consult = $conection->prepare($sql);
 	$consult->bindParam(":id", $id, PDO::PARAM_STR);
 	$consult->execute();
-	$data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
-
+	$data = $consult->fetchall(PDO::FETCH_ASSOC);
+  
 	if (count($data) > 0) {
 		if ($data['category_name'] === 'life & style') {
 			$data['category_name'] = 'life&style';
@@ -123,11 +111,7 @@ if (count($data) > 0) {
 				<h2>Political</h2>
 
 				<?php
-				$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id WHERE _state = '1' AND user_id = :id AND category_name = 'political'";
-				$consult = $conection->prepare($sql);
-				$consult->bindParam(":id", $id, PDO::PARAM_STR);
-				$consult->execute();
-				$data = $consult->fetchall(PDO::FETCH_ASSOC);
+				$data = getNews($conection, "political");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -154,11 +138,7 @@ if (count($data) > 0) {
 				<h2>Entertainment</h2>
 
 				<?php
-				$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id WHERE _state = '1' AND user_id = :id AND category_name = 'entertainment'";
-				$consult = $conection->prepare($sql);
-				$consult->bindParam(":id", $id, PDO::PARAM_STR);
-				$consult->execute();
-				$data = $consult->fetchall(PDO::FETCH_ASSOC);
+				$data = getNews($conection, "entertainment");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -186,11 +166,7 @@ if (count($data) > 0) {
 				<h2>Business</h2>
 
 				<?php
-				$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id  WHERE _state = '1' AND user_id = :id AND category_name = 'business'";
-				$consult = $conection->prepare($sql);
-				$consult->bindParam(":id", $id, PDO::PARAM_STR);
-				$consult->execute();
-				$data = $consult->fetchall(PDO::FETCH_ASSOC);
+				$data = getNews($conection, "business");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -215,12 +191,7 @@ if (count($data) > 0) {
 			<div class="Culture">
 				<h2>Culture</h2>
 				<?php
-
-				$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id  WHERE _state = '1' AND user_id = :id AND category_name = 'culture'";
-				$consult = $conection->prepare($sql);
-				$consult->bindParam(":id", $id, PDO::PARAM_STR);
-				$consult->execute();
-				$data = $consult->fetchall(PDO::FETCH_ASSOC);
+				$data = getNews($conection, "culture");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -247,11 +218,7 @@ if (count($data) > 0) {
 				<h2>Sports</h2>
 
 				<?php
-				$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id  WHERE _state = '1' AND user_id = :id AND category_name = 'sports'";
-				$consult = $conection->prepare($sql);
-				$consult->bindParam(":id", $id, PDO::PARAM_STR);
-				$consult->execute();
-				$data = $consult->fetchall(PDO::FETCH_ASSOC);
+				$data = getNews($conection, "sports");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -277,11 +244,7 @@ if (count($data) > 0) {
 				<h2>Life & Style</h2>
 
 				<?php
-				$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id  WHERE _state = '1' AND user_id = :id AND category_name = 'life & style'";
-				$consult = $conection->prepare($sql);
-				$consult->bindParam(":id", $id, PDO::PARAM_STR);
-				$consult->execute();
-				$data = $consult->fetchall(PDO::FETCH_ASSOC);
+				$data = getNews($conection, "life & style");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
