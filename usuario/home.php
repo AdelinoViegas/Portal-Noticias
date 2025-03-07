@@ -2,7 +2,7 @@
 session_start();
 require_once "../conection.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
 	header("Location: ../index.php");
 }
 
@@ -12,48 +12,13 @@ $consult = $conection->prepare($sql);
 $consult->bindParam(":id", $id, PDO::PARAM_STR);
 $consult->execute();
 $data = $consult->fetchall(PDO::FETCH_ASSOC);
-
-$culture = false;
-$sports = false;
-$entertainment = false;
-$life_style = false;
-$business = false;
-$political = false;
-$array = array();
+$categories = [];
 
 if (count($data) > 0) {
 	for ($l = 0; $l < count($data); $l++) {
-		if ($data[$l]['category_name'] === 'culture') {
-			if ($culture === false) {
-				$array[] = 'culture';
-				$culture = true;
-			}
-		} elseif ($data[$l]['category_name'] === 'sports') {
-			if ($sports === false) {
-				$array[] = 'sports';
-				$sports = true;
-			}
-		} elseif ($data[$l]['category_name'] === 'business') {
-			if ($business === false) {
-				$array[] = 'business';
-				$business = true;
-			}
-		} elseif ($data[$l]['category_name'] === 'entertainment') {
-			if ($entertainment === false) {
-				$array[] = 'entertainment';
-				$entertainment = true;
-			}
-		} elseif ($data[$l]['category_name'] === 'life & style') {
-			if ($life_style === false) {
-				$array[] = 'life & style';
-				$life_style = true;
-			}
-		} elseif ($data[$l]['category_name'] === 'political') {
-			if ($political === false) {
-				$array[] = 'political';
-				$political = true;
-			}
-		}
+		if (!in_array($data[$l]['category_name'], $categories)) {
+				array_push($categories,$data[$l]['category_name']);
+		} 
 	}
 }
 ?>
@@ -77,18 +42,18 @@ if (count($data) > 0) {
 				<ul class="menu">
 					<li><a href="home.php" class="underline">Home</a></li>
 
-					<?php foreach ($array as $value) {
-						if ($value === 'life & style') {
+					<?php foreach ($categories as $category) {
+						if ($category === 'life & style') {
 							?>
 							<li>
 								<a href="life&style.php">
-									<?= $value; ?>
+									<?= $category; ?>
 								</a>
 							</li>
 						<?php } else { ?>
 							<li>
-								<a href="<?= $value . '.php'; ?>">
-									<?= $value; ?>
+								<a href="<?= $category . '.php'; ?>">
+									<?= $category; ?>
 								</a>
 							</li>
 						<?php }
