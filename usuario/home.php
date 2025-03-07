@@ -203,8 +203,8 @@ if (count($data) > 0) {
 								<img src="<?= $data[$l]['image']; ?>" alt="imgEntertainment">
 							</a>
 
-							<a href="entertainment.php#<?= $data[$l]['id_noticia']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['titulo_noticia']; ?></h3>
+							<a href="entertainment.php#<?= $data[$l]['notice_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['notice_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -231,12 +231,12 @@ if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="business.php#<?= $data[$l]['id_noticia']; ?>">
-								<img src="<?= $data[$l]['imagem']; ?>" alt="imgBusiness">
+							<a href="business.php#<?= $data[$l]['notice_id']; ?>">
+								<img src="<?= $data[$l]['image']; ?>" alt="imgBusiness">
 							</a>
 
-							<a href="business.php#<?= $data[$l]['id_noticia']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['titulo_noticia']; ?></h3>
+							<a href="business.php#<?= $data[$l]['notice_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['notice_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -261,11 +261,11 @@ if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="culture.php#<?= $data[$l]['id_noticia']; ?>">
-								<img src="<?= $data[$l]['imagem']; ?>" alt="imgCulture">
+							<a href="culture.php#<?= $data[$l]['notice_id']; ?>">
+								<img src="<?= $data[$l]['image']; ?>" alt="imgCulture">
 							</a>
-							<a href="culture.php#<?= $data[$l]['id_noticia']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['titulo_noticia']; ?></h3>
+							<a href="culture.php#<?= $data[$l]['notice_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['notice_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -292,12 +292,12 @@ if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="sports.php#<?= $data[$l]['id_noticia']; ?>">
-								<img src="<?= $data[$l]['imagem']; ?>" alt="imgSports">
+							<a href="sports.php#<?= $data[$l]['notice_id']; ?>">
+								<img src="<?= $data[$l]['image']; ?>" alt="imgSports">
 							</a>
 
-							<a href="sports.php#<?= $data[$l]['id_noticia']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['titulo_noticia']; ?></h3>
+							<a href="sports.php#<?= $data[$l]['notice_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['notice_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -322,12 +322,12 @@ if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="life&style.php#<?= $data[$l]['id_noticia']; ?>">
-								<img src="<?= $data[$l]['imagem']; ?>" alt="imgLife&Style">
+							<a href="life&style.php#<?= $data[$l]['notice_id']; ?>">
+								<img src="<?= $data[$l]['image']; ?>" alt="imgLife&Style">
 							</a>
 
-							<a href="life&style.php#<?= $data[$l]['id_noticia']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['titulo_noticia']; ?></h3>
+							<a href="life&style.php#<?= $data[$l]['notice_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['notice_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
