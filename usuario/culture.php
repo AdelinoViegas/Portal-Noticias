@@ -14,7 +14,7 @@ $categories = getCategories($conection);
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<title>political</title>
+	<title>culture</title>
 	<?php require_once "../head.php"; ?>
 </head>
 <body>
@@ -37,9 +37,9 @@ $categories = getCategories($conection);
 									<?= $category; ?>
 								</a>
 							</li>
-						<?php } else if (strtolower($category) === 'entertainment') { ?>
+						<?php } else if (strtolower($category) === 'culture') { ?>
 								<li>
-									<a href="entertainment.php" class="underline">
+									<a href="culture.php" class="underline">
 									<?= $category; ?>
 									</a>
 								</li>
@@ -70,19 +70,19 @@ $categories = getCategories($conection);
 	</header>
 
 	<section class="title">
-		<h1>Entertainment</h1>
+		<h1>Culture</h1>
 	</section>
 
 	<div class="barra_bottom">
 		<div class="barra_red">
-			<div id="text1">Entertainment</div>
+			<div id="text1">Culture</div>
 			<div id="icon">></div>
-			<p id="text2">Esteja ligado a actualidade dos acontecimentos</p>
+			<p id="text2">Cultura é uma arte</p>
 		</div>
 	</div>
 	<section class="category">
 		<?php
-		$data = getNews($conection, "entertainment");
+		$data = getNews($conection, "culture");
 
 		if (count($data) > 0) {
 			for ($l = 0; $l < count($data); $l++) {

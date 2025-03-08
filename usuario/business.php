@@ -30,15 +30,14 @@ $categories = getCategories($conection);
           <li><a href="home.php">Home</a></li>
 
           <?php foreach ($categories as $category) {
-
-            if ($category === 'life & style') {
+            if (strtolower($category) === 'life & style') {
               ?>
               <li>
                 <a href="life&style.php">
                   <?= $category; ?>
                 </a>
               </li>
-            <?php } else if ($category === 'business') { ?>
+            <?php } else if (strtolower($category) === 'business') { ?>
                 <li>
                   <a href="business.php" class="underline">
                   <?= $category; ?>
@@ -46,7 +45,7 @@ $categories = getCategories($conection);
                 </li>
             <?php } else { ?>
                 <li>
-                  <a href="<?= $category . '.php'; ?>">
+                  <a href="<?= strtolower($category) . '.php'; ?>">
                   <?= $category; ?>
                   </a>
                 </li>
@@ -63,6 +62,7 @@ $categories = getCategories($conection);
           <span></span>
         </div>
       </nav>
+
       <a href="../encerro.php">
         <button>Deseja sair</button>
       </a>
@@ -96,8 +96,8 @@ $categories = getCategories($conection);
         </div>
       <?php }
     } ?>
-
   </section>
+
   <?php require_once "../footer.php"; ?>
 </body>
 </html>

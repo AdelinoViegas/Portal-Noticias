@@ -31,7 +31,7 @@ $categories = getCategories($conection);
 					<li><a href="home.php" class="underline">Home</a></li>
 
 					<?php foreach ($categories as $category) {
-						if ($category === 'life & style') {
+						if (strtolower($category) === 'life & style') {
 							?>
 							<li>
 								<a href="life&style.php">
@@ -40,7 +40,7 @@ $categories = getCategories($conection);
 							</li>
 						<?php } else { ?>
 							<li>
-								<a href="<?= $category . '.php'; ?>">
+								<a href="<?= strtolower($category) . '.php'; ?>">
 									<?= $category; ?>
 								</a>
 							</li>
@@ -112,7 +112,7 @@ $categories = getCategories($conection);
 				<h2>Political</h2>
 
 				<?php
-				$data = getNews( $conection, "political");
+				$data = getNews($conection, "political");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
