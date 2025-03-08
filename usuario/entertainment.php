@@ -1,7 +1,8 @@
 <?php
 session_start();
-
 require_once "../conexao.php";
+require_once "../features/getCategories.php";
+require_once "../features/getNews.php";
 
 if (!isset($_SESSION['logado'])) {
 	header("Location: ../index.php");
@@ -53,7 +54,6 @@ $categories = getCategories($conection);
 					<li id="exit">
 						<a href="../encerro.php">Sair</a>
 					</li>
-
 				</ul>
 
 				<div class="mobile">
@@ -80,26 +80,20 @@ $categories = getCategories($conection);
 			<p id="text2">Esteja ligado a actualidade dos acontecimentos</p>
 		</div>
 	</div>
-
 	<section class="category">
 		<?php
 			$data = getNews($conection, "entertainment");
 
 		if (count($data) > 0) {
-
 			for ($l = 0; $l < count($data); $l++) {
-
 				?>
-
 				<div id="<?= $data[$l]['id_noticia']; ?>" class="notice">
 					<img id="img_notice" src="<?= $data[$l]['imagem']; ?>" alt="imagemNotice">
 					<h1><?= $data[$l]['titulo_noticia']; ?></h1>
 					<p><?= $data[$l]['texto_noticia']; ?></p>
 				</div>
-
 			<?php }
 		} ?>
-
 	</section>
 
 	<?php require_once "../footer.php"; ?>
