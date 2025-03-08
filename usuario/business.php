@@ -2,18 +2,13 @@
 session_start();
 require_once "../conection.php";
 require_once "../features/getCategories.php";
+require_once "../features/getNews.php";
 
 if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$id = $_SESSION['user_id'];
-$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.id_category = c.id_category  WHERE _state = '1' AND user_id = :id";
-$consult = $conection->prepare($sql);
-$consult->bindParam(":id", $id, PDO::PARAM_STR);
-$consult->execute();
-$data = $consult->fetchall(PDO::FETCH_ASSOC);
-$categories = getCategories($data);
+$categories = getCategories($conection);
 ?>
 
 <!DOCTYPE html>
@@ -89,11 +84,7 @@ $categories = getCategories($data);
 
   <section class="category">
     <?php
-    $sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id  WHERE _state = '1' AND user_id = :id AND category_name = 'business'";
-    $result = $conection->prepare($sql);
-    $consult->bindParam(":id", $id, PDO::PARAM_STR);
-    $consult->execute();
-    $data = $consult->fetchall(PDO::FETCH_ASSOC);
+      $data = getNews($conection, "business");
 
     if (count($data) > 0) {
       for ($l = 0; $l < count($data); $l++) {
