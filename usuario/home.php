@@ -9,6 +9,12 @@ if (!isset($_SESSION['logged'])) {
 }
 
 $categories = getCategories($conection);
+$id = $_SESSION['user_id'];
+$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id WHERE _state = '1' AND user_id = :id Limit 1";
+$consult = $conection->prepare($sql);
+$consult->bindParam(":id", $id, PDO::PARAM_STR);
+$consult->execute();
+$data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 ?>
 
 <!DOCTYPE html>
@@ -64,13 +70,6 @@ $categories = getCategories($conection);
 		</div>
 	</header>
 	<?php
-	$id = $_SESSION['user_id'];
-	$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id WHERE _state = '1' AND user_id = :id Limit 1";
-	$consult = $conection->prepare($sql);
-	$consult->bindParam(":id", $id, PDO::PARAM_STR);
-	$consult->execute();
-	$data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
-
 	if (count($data) > 0) {
 		if ($data['category_name'] === 'life & style') {
 			$data['category_name'] = 'life&style';

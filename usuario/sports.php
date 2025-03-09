@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once "../conexao.php";
+require_once "../conection.php";
 require_once "../features/getCategories.php";
 require_once "../features/getNews.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
 	header("Location: ../index.php");
 }
 
