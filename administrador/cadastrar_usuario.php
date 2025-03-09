@@ -10,20 +10,19 @@ if (!isset($_SESSION['logged'])) {
 if (isset($_POST['btn-cadastrar'])) {
   $inputs = [
     "name" => $_POST['txtnome'],
-    "surname" =>  $_POST['txtsobrenome'],
-    "gender" => $_POST['txtgenero'], 
+    "surname" => $_POST['txtsobrenome'],
+    "gender" => $_POST['txtgenero'],
     "email " => $_POST['txtemail'],
     "password" => password_hash($_POST['txtpassword'], PASSWORD_DEFAULT),
     "date" => Date("Y-m-d H:i:s"),
   ];
- 
-  signUser($conection, $inputs); 
-  
+
+  signUser($conection, $inputs);
+
   if ($result) {
     header('Location:usuarios.php');
   }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -108,11 +107,9 @@ if (isset($_POST['btn-cadastrar'])) {
               <option value="femenino">Femenino</option>
             </select>
           </p>
-
         </div>
 
         <div id="row2">
-
           <p class="widthTotal">
             <label>E-mail: </label>
             <input type="email" name="txtemail" placeholder="Exemplo@gmail.com" required>
@@ -139,6 +136,6 @@ if (isset($_POST['btn-cadastrar'])) {
       </form>
     </div>
   </div>
-</div>
+  </div>
 </body>
 </html>
