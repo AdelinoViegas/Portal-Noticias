@@ -14,11 +14,8 @@ if(!isset($_SESSION['logado'])){
  $result = $ligation->prepare($sql);
  $result->execute();     
  $data =  $result->fetchall(PDO::FETCH_ASSOC);
-       
+ $categories = getCategories($conection);
  ?>
-
-
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>

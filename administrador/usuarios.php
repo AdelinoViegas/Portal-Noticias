@@ -1,14 +1,13 @@
 <?php
 session_start();
-require_once "../conexao.php";
+require_once "../conection.php";
 
-
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$sql = "SELECT * FROM usuarios WHERE estado = '1' AND painel = 'user'";
-$result = $ligation->prepare($sql);
+$sql = "SELECT * FROM users WHERE _state = '1' AND painel = 'user'";
+$result = $conection->prepare($sql);
 $result->execute();
 $data = $result->fetchall(PDO::FETCH_ASSOC);
 
@@ -86,21 +85,21 @@ $data = $result->fetchall(PDO::FETCH_ASSOC);
             for ($l = 0; $l < count($data); $l++) {
               ?>
               <tr>
-                <td><?= $data[$l]['nome']; ?></td>
-                <td><?= $data[$l]['sobrenome']; ?></td>
+                <td><?= $data[$l]['name']; ?></td>
+                <td><?= $data[$l]['last_name']; ?></td>
                 <td><?= $data[$l]['email']; ?></td>
-                <td><?= $data[$l]['genero']; ?></td>
+                <td><?= $data[$l]['gender']; ?></td>
                 <td><?= $data[$l]['painel']; ?></td>
                 <td id="edit">
                   <form action="editar_usuario.php" method="post">
-                    <input type="hidden" name="id_usuario" value="<?= $data[$l]['id_usuario']; ?>">
+                    <input type="hidden" name="id_usuario" value="<?= $data[$l]['user_id']; ?>">
                     <button id="edit1" type="submit">
                       <img src="img/edit.png">
                     </button>
                   </form>
 
                   <form action="apagar_usuario.php" method="post">
-                    <input type="hidden" name="id_usuario" value="<?= $data[$l]['id_usuario']; ?>">
+                    <input type="hidden" name="id_usuario" value="<?= $data[$l]['user_id']; ?>">
                     <button id="edit2" type="submit">
                       <img src="img/apagar.png">
                     </button>
