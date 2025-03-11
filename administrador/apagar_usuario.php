@@ -20,4 +20,3 @@ $result2->execute();
 if ($result1 and $result2) {
   header('Location: usuarios.php');
 }
-?>

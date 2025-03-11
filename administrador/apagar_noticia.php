@@ -16,4 +16,3 @@ $result->execute();
 if ($result) {
   header('Location: ver_noticia.php');
 }
-?>
