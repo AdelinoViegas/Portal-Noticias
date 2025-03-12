@@ -1,25 +1,21 @@
 <?php
 session_start();
-require_once "../conexao.php";
+require_once "../conection.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
 $data = getCategories($conection);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
   <title>noticias</title>
   <?php require_once "../headADM.php" ?>
 </head>
-
 <body>
-
-
-
   <header class="header">
     <h1>ADM</h1>
 
@@ -34,7 +30,6 @@ $data = getCategories($conection);
         <a href="../encerro.php">Sair</a>
       </li>
     </ul>
-
   </header>
 
   <!--Navebar-->
@@ -60,10 +55,9 @@ $data = getCategories($conection);
       </li>
     </ul>
   </div>
-    
+
   <div id="container">
     <div id="info">
-
       <div id="buttons">
         <a href="cadastrar_noticia.php" id="adicionar">
           <button>Adicionar</button>
@@ -79,7 +73,6 @@ $data = getCategories($conection);
             <th scope="col">Ações</th>
           </tr>
         </thead>
-
         <tbody>
           <?php
           if (count($data) > 0) {
@@ -111,7 +104,6 @@ $data = getCategories($conection);
                 </td>
               </tr>
             <?php } ?>
-
           </tbody>
         <?php } else { ?>
           <tfoot>
