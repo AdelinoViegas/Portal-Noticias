@@ -6,9 +6,7 @@ if (!isset($_SESSION['logado'])) {
   header("Location: ../index.php");
 }
 
-
-$id = $_SESSION['id'];
-
+$id = $_SESSION['user_id'];
 $sql = "SELECT * FROM noticias AS n INNER JOIN categorias AS c ON n.id_categoria = c.id_categoria  WHERE estado = '1' AND id_usuario = '$id'";
 $result = $ligation->prepare($sql);
 $result->execute();
