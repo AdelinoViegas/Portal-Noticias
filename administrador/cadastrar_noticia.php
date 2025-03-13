@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once "../conexao.php";
+require_once "../conection.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
@@ -14,7 +14,7 @@ if (isset($_POST['btn-cadastrar'])) {
   $img = $_POST['txtimagem'];
   $categoria = $_POST['txtcategoria'];
 
-  $sql = "INSERT INTO noticias VALUES(default,'$titulo','$descricao','$img','1','$categoria','$id',now(),now())";
+  $sql = "INSERT INTO noticies VALUES(default,'$titulo','$descricao','$img','1','$categoria','$id',now(),now())";
   $result = $ligation->prepare($sql);
   $result->execute();
 
