@@ -1,15 +1,15 @@
 <?php
 session_start();
-require_once "../conexao.php";
+require_once "../conection.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
 $_SESSION['id_noticia'] = $_POST['id_noticia'];
 $id = $_SESSION['id_noticia'];
 
-$sql = "SELECT * FROM noticias AS n INNER JOIN categorias AS c ON n.id_categoria = c.id_categoria  WHERE estado = '1' AND id_noticia = '$id' ";
+$sql = "SELECT * FROM noticies AS n INNER JOIN categorias AS c ON n.id_categoria = c.id_categoria  WHERE estado = '1' AND id_noticia = '$id' ";
 $result = $ligation->prepare($sql);
 $result->execute();
 $data = $result->fetchall(PDO::FETCH_ASSOC);
