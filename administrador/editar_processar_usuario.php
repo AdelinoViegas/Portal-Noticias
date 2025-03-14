@@ -17,7 +17,7 @@ if (isset($_POST['btn-cadastrar'])) {
 
   /*criptografar a senha*/
   $password = password_hash($password, PASSWORD_DEFAULT);
-  $sql = "UPDATE usuarios SET nome = '$name',sobrenome = '$surname',email = '$email',senha = '$password',genero ='$genus',data_modificacao = NOW() WHERE id_usuario = '$id' ";
+  $sql = "UPDATE users SET name = '$name',last_name = '$surname',email = '$email',_password = '$password',gender ='$genus',data_modificacao = NOW() WHERE id_user = '$id' ";
   $result = $ligation->prepare($sql);
   $result->execute();
 
