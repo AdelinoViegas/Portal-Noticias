@@ -6,16 +6,16 @@ if (!isset($_SESSION['logado'])) {
   header("Location: ../index.php");
 }
 
-$sql = "SELECT * FROM usuarios WHERE painel = 'user'";
+$sql = "SELECT * FROM users WHERE painel = 'user'";
 $result = $ligation->prepare($sql);
 $result->execute();
 $data = $result->fetchall(PDO::FETCH_ASSOC);
 
-if (isset($_POST['btn-cadastrar'])) {
-  if ($_POST['txtgenero'] === "") {
+if (isset($_POST['notice_see'])) {
+  if ($_POST['txtUser'] === "") {
     header('Location: noticia_usuario.php');
   } else {
-    $_SESSION['id'] = $_POST['txtgenero'];
+    $_SESSION['user_id'] = $_POST['txtUser'];
     header('Location: ver_noticia.php');
   }
 }
@@ -88,16 +88,16 @@ if (isset($_POST['btn-cadastrar'])) {
         <div id="row1">
           <p class="width400">
             <label>Usuarios: </label>
-            <select name="txtgenero" required>
+            <select name="txtUser" required>
               <option value="" class="font">Escolha um usuario</option>
               <?php
 
               if (count($data) > 0) {
                 for ($l = 0; $l < count($data); $l++) {
                   ?>
-                  <option value="<?= $data[$l]['id_usuario']; ?>">
+                  <option value="<?= $data[$l]['user_id']; ?>">
 
-                    <?= $data[$l]['nome'] . ' ' . $data[$l]['sobrenome']; ?>
+                    <?= $data[$l]['name'] . ' ' . $data[$l]['last_name']; ?>
                   </option>
                 <?php }
               } ?>
@@ -106,7 +106,7 @@ if (isset($_POST['btn-cadastrar'])) {
         </div>
 
         <div id="buttons">
-          <button type="submit" name="btn-cadastrar">Notícias</button>
+          <button type="submit" name="notice_see">Notícias</button>
         </div>
       </form>
     </div>

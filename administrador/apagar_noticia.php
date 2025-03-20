@@ -1,18 +1,17 @@
 <?php
 session_start();
-require_once "../conexao.php";
+require_once "../conection.php";
 
 if (!isset($_SESSION['logado'])) {
   header("Location: ../index.php");
 }
 
-$_SESSION['id_noticia'] = $_POST['id_noticia'];
-$id = $_SESSION['id_noticia'];
+$_SESSION['notice_id'] = $_POST['notice_id'];
+$sql = "UPDATE noticies SET _state = '0' WHERE notice_id = :id";
+$consult = $conection->prepare($sql);
+$consult->bindParam(":id", $_SESSION['notice_id'], PDO::PARAM_STR);
+$consutt->execute();
 
-$sql = "UPDATE noticias SET estado = '0' WHERE id_noticia = '$id' ";
-$result = $ligation->prepare($sql);
-$result->execute();
-
-if ($result) {
+if ($consult) {
   header('Location: ver_noticia.php');
 }

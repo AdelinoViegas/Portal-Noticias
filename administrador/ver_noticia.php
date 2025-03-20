@@ -79,24 +79,24 @@ $data = getCategories($conection);
             for ($l = 0; $l < count($data); $l++) {
               ?>
               <tr>
-                <td><?= $data[$l]['titulo_noticia']; ?></td>
-                <td><?= $data[$l]['nome_categoria']; ?></td>
+                <td><?= $data[$l]['notice_title']; ?></td>
+                <td><?= $data[$l]['category_name']; ?></td>
                 <td><?php
-                $date = $data[$l]['data_cadastro'];
+                $date = $data[$l]['date_cadastre'];
                 $date = strtotime($date);
                 $datetime = date('d/m/Y H:i:s', $date);
 
                 echo $datetime; ?></td>
                 <td id="edit">
                   <form action="editar_noticia.php" method="post">
-                    <input type="hidden" name="id_noticia" value="<?= $data[$l]['id_noticia']; ?>">
+                    <input type="hidden" name="notice_id" value="<?= $data[$l]['notice_id']; ?>">
                     <button id="edit1" type="submit">
                       <img src="img/edit.png">
                     </button>
                   </form>
 
                   <form action="apagar_noticia.php" method="post">
-                    <input type="hidden" name="id_noticia" value="<?= $data[$l]['id_noticia']; ?>">
+                    <input type="hidden" name="notice_id" value="<?= $data[$l]['notice_id']; ?>">
                     <button id="edit2" type="submit">
                       <img src="img/apagar.png">
                     </button>
