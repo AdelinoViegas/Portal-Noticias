@@ -1,22 +1,22 @@
 <?php
 session_start();
-require_once "../conexao.php";
+require_once "../conection.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$_SESSION['id_user'] = $_POST['id_usuario'];
-$id = $_SESSION['id_user'];
+$_SESSION['user_id'] = $_POST['user_id'];
+$sql = "UPDATE users SET _state = '0' WHERE user_id = :id";
+$consult1 = $conection->prepare($sql);
+$consult1->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
+$consult1->execute();
 
-$sql = "UPDATE usuarios SET estado = '0' WHERE id_usuario = '$id'";
-$result1 = $ligation->prepare($sql);
-$result1->execute();
+$sql = "UPDATE noticies SET _state = '0' WHERE user_id = :id";
+$consult2 = $conection->prepare($sql);
+$consult2->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
+$consult2->execute();
 
-$sql = "UPDATE noticias SET estado = '0' WHERE id_usuario = '$id'";
-$result2 = $ligation->prepare($sql);
-$result2->execute();
-
-if ($result1 and $result2) {
+if ($consult1 && $consult2) {
   header('Location: usuarios.php');
 }
