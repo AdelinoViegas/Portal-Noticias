@@ -6,14 +6,12 @@ if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$_SESSION['id_noticia'] = $_POST['id_noticia'];
-$id = $_SESSION['id_noticia'];
-
-$sql = "SELECT * FROM noticies AS n INNER JOIN categorias AS c ON n.id_categoria = c.id_categoria  WHERE estado = '1' AND id_noticia = '$id' ";
-$result = $ligation->prepare($sql);
-$result->execute();
-$data = $result->fetchall(PDO::FETCH_ASSOC);
-$data = $data[0];
+$_SESSION['notice_id'] = $_POST['notice_id'];
+$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id WHERE _state = '1' AND notice_id = :id";
+$consult = $conection->prepare($sql);
+$consult->bindParam(":id", $_SESSION['notice_id'], PDO::PARAM_STR);
+$consult->execute();
+$data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 ?>
 
 <!DOCTYPE html>
@@ -83,8 +81,8 @@ $data = $data[0];
         <div id="row1">
           <p class="width400">
             <label>Imagem: </label>
-            <select name="txtimagem" class="height40">
-              <option value="<?= $data['imagem']; ?>">Escolha a imagem</option>
+            <select name="image" class="height40">
+              <option value="<?= $data['image']; ?>">Escolha a imagem</option>
               <optgroup label="Sports">
                 <option value="../imagem/sport01.jpg">
                   sport01
@@ -216,45 +214,45 @@ $data = $data[0];
           <p class="width400">
             <label>Categoria: </label>
             <select name="txtcategoria" class="height40" required>
-              <?php $category = $data['nome_categoria'];
+              <?php $category = $data['category_name'];
               if ($category == 'sports') {
                 ?>
-                <option value="<?= $data['nome_categoria']; ?>">Sports</option>
+                <option value="<?= $data['category_name']; ?>">Sports</option>
                 <option value="life & style">Life & style</option>
                 <option value="political">Political</option>
                 <option value="entertainment">Entertainment</option>
                 <option value="business">Business</option>
                 <option value="culture">Culture</option>
               <?php } else if ($category == 'culture') { ?>
-                  <option value="<?= $data['nome_categoria']; ?>">Culture</option>
+                  <option value="<?= $data['category_name']; ?>">Culture</option>
                   <option value="life & style">Life & style</option>
                   <option value="political">Political</option>
                   <option value="entertainment">Entertainment</option>
                   <option value="business">Business</option>
                   <option value="sports">Sports</option>
               <?php } else if ($category == 'entertainment') { ?>
-                    <option value="<?= $data['nome_categoria']; ?>">Entertainment</option>
+                    <option value="<?= $data['category_name']; ?>">Entertainment</option>
                     <option value="life & style">Life & style</option>
                     <option value="political">Political</option>
                     <option value="sports">Sports</option>
                     <option value="business">Business</option>
                     <option value="culture">Culture</option>
               <?php } else if ($category == 'life & style') { ?>
-                      <option value="<?= $data['nome_categoria']; ?>">Life & Style</option>
+                      <option value="<?= $data['category_name']; ?>">Life & Style</option>
                       <option value="entertainment">Entertainment</option>
                       <option value="political">Political</option>
                       <option value="sports">Sports</option>
                       <option value="business">Business</option>
                       <option value="culture">Culture</option>
               <?php } else if ($category == 'business') { ?>
-                        <option value="<?= $data['nome_categoria']; ?>">Businesss</option>
+                        <option value="<?= $data['category_name']; ?>">Businesss</option>
                         <option value="life & style">Life & style</option>
                         <option value="political">Political</option>
                         <option value="sports">Sports</option>
                         <option value="entertainment">Entertainment</option>
                         <option value="culture">Culture</option>
               <?php } else if ($category == 'political') { ?>
-                          <option value="<?= $data['nome_categoria']; ?>">Political</option>
+                          <option value="<?= $data['category_name']; ?>">Political</option>
                           <option value="life & style">Life & style</option>
                           <option value="entertainment">Entertainment</option>
                           <option value="sports">Sports</option>
@@ -268,8 +266,8 @@ $data = $data[0];
         <div id="row1">
           <p class="widthTotal">
             <label>Título-da-notícia: </label>
-            <textarea name="txtnoticia" required>
-         <?= $data['titulo_noticia']; ?>
+            <textarea name="notice_title" required>
+         <?= $data['notice_title']; ?>
        </textarea>
           </p>
         </div>
@@ -277,15 +275,15 @@ $data = $data[0];
         <div id="row1">
           <p class="widthTotal">
             <label>Descrição: </label>
-            <textarea name="txtdescricao" required>
-           <?= $data['texto_noticia']; ?>
+            <textarea name="description" required>
+           <?= $data['notice_text']; ?>
          </textarea>
           </p>
         </div>
 
         <div id="buttons">
           <a href="#" id="cadastrar">
-            <button type="submit" name="btn-actualizar">actualizar</button>
+            <button type="submit" name="notice_update">actualizar</button>
           </a>
 
           <a href="ver_noticia.php" id="voltar">
