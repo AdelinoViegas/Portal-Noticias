@@ -1,25 +1,29 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/editUser.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$id = $_SESSION['id'];
-
-if (isset($_POST['btn-cadastrar'])) {
-  $name = $_POST['txtnome'];
-  $surname = $_POST['txtsobrenome'];
-  $genus = $_POST['txtgenero'];
-  $email = $_POST['txtemail'];
-  $password = $_POST['txtpassword'];
-
-  /*criptografar a senha*/
-  $password = password_hash($password, PASSWORD_DEFAULT);
-  $sql = "UPDATE usuarios SET nome = '$name',sobrenome = '$surname',email = '$email',senha = '$password',genero ='$genus',data_modificacao = NOW() WHERE id_usuario = '$id' ";
-  $result = $ligation->prepare($sql);
-  $result->execute();
+if (isset($_POST['user_update'])) {
+  $name = $_POST['name'];
+  $surname = $_POST['last_name'];
+  $gender = $_POST['gender'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $date = Date('Y-m-d H:i:s');
+  
+  $result = editUser(
+    $conection,
+    $name,
+    $surname,
+    $gender,
+    $email,
+    $password,
+    $date
+  );
 
   if ($result) {
     header('Location:usuarios.php');

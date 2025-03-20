@@ -2,18 +2,16 @@
 session_start();
 require_once "../conection.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$_SESSION['id_user'] = $_POST['id_usuario'];
-$id = $_SESSION['id_user'];
-
-$sql = "SELECT * FROM usuarios WHERE id_usuario = '$id'";
-$result = $ligation->prepare($sql);
-$result->execute();
-$data = $result->fetchall(PDO::FETCH_ASSOC);
-$data = $data[0];
+$_SESSION['user_id'] = $_POST['user_id'];
+$sql = "SELECT * FROM users WHERE user_id = :id";
+$consult = $conection->prepare($sql);
+$consult->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
+$consult->execute();
+$data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 ?>
 
 <!DOCTYPE html>
@@ -85,27 +83,27 @@ $data = $data[0];
         <div id="row1">
           <p class="widthTotal">
             <label>Nome: </label>
-            <input type="text" name="txtnome" value="<?= $data['nome']; ?>">
+            <input type="text" name="name" value="<?= $data['name']; ?>">
           </p>
 
           <p class="widthTotal">
             <label>Sobrenome: </label>
-            <input type="text" name="txtsobrenome" value="<?= $data['sobrenome']; ?>">
+            <input type="text" name="last_name" value="<?= $data['last_name']; ?>">
           </p>
 
           <p class="widthTotal">
             <label>Gênero: </label>
-            <select name="txtgenero" value="<?= $data['genero']; ?>" required>
+            <select name="gender" value="<?= $data['gender']; ?>" required>
 
               <?php
-              $genus = $dados['genero'];
+              $gender = $dados['gender'];
 
-              if ($genus === 'masculino') {
+              if ($gender === 'masculino') {
                 ?>
-                <option value="<?= $data['genero']; ?>">Masculino</option>
+                <option value="<?= $data['gender']; ?>">Masculino</option>
                 <option value="Femenino">Femenino</option>
               <?php } else { ?>
-                <option value="<?= $data['genero']; ?>">Femenino</option>
+                <option value="<?= $data['gender']; ?>">Femenino</option>
                 <option value="masculino">Masculino</option>
               <?php } ?>
             </select>
@@ -116,12 +114,12 @@ $data = $data[0];
         <div id="row2">
           <p class="widthTotal">
             <label>E-mail: </label>
-            <input type="email" name="txtemail" value="<?= $data['email']; ?>">
+            <input type="email" name="email" value="<?= $data['email']; ?>">
           </p>
 
           <p class="widthTotal">
             <label>Senha: </label>
-            <input type="password" name="txtpassword" placeholder="alterar a senha">
+            <input type="password" name="password" placeholder="alterar a senha">
           </p>
           <p class="widthTotal">
 
@@ -130,7 +128,7 @@ $data = $data[0];
 
         <div id="buttons">
           <a href="usuario.php" id="cadastrar">
-            <button type="submit" name="btn-cadastrar">actualizar</button>
+            <button type="submit" name="user_update">actualizar</button>
           </a>
 
           <a href="usuarios.php" id="voltar">
