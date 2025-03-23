@@ -1,8 +1,7 @@
 <?php
 
-function editNews($conection,$notice_title,$description,$image,$date){
-  $sql = "UPDATE noticies SET notice_title = :notice_title ,
-  notice_text = :notice_text , _image = :notice_image, data_modificaction = :notice_date WHERE notice_id = :id";
+function editNews($conection, $notice_title, $description, $image, $date){
+  $sql = "UPDATE noticies SET notice_title = :notice_title , notice_text = :notice_text, _image = :notice_image, data_modificaction = :notice_date WHERE notice_id = :id";
   $consult = $conection->prepare($sql);
   $consult->bindParam(":notice_title", $notice_title, PDO::PARAM_STR);
   $consult->bindParam(":notice_text", $description, PDO::PARAM_STR);

@@ -1,8 +1,8 @@
 <?php
 
-function editUser($conection,$name,$surname,$gender,$email,$password,$date){
+function editUser($conection, $name, $surname, $gender, $email, $password, $date){
   $password = password_hash($password, PASSWORD_DEFAULT);
-  $sql = "UPDATE users SET _name = :user_name, last_name = :user_surname, email = :user_email , _password = :user_password, gender = :user_gender, data_modificaction = :user_date WHERE user_id = :id";
+  $sql = "UPDATE users SET _name = :user_name, last_name = :user_surname, email = :user_email, _password = :user_password, gender = :user_gender, data_modificaction = :user_date WHERE user_id = :id";
   $result = $ligation->prepare($sql);
   $consult->bindParam(":user_name", $name, PDO::PARAM_STR);
   $consult->bindParam(":user_surname", $surname, PDO::PARAM_STR);
