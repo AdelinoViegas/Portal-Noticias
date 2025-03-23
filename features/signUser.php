@@ -18,6 +18,8 @@ function signUser($conection, $inputs){
 
     if(!$result)
       throw new Exception("Falha ao cadastrar");
+
+    return $result;
   }catch(Exception $error){
     echo $error->getMessage();
   } 

@@ -7,13 +7,13 @@ if (!isset($_SESSION['logged'])) {
 }
 
 $_SESSION['user_id'] = $_POST['user_id'];
-$sql = "UPDATE users SET _state = '0' WHERE user_id = :id";
-$consult1 = $conection->prepare($sql);
+$sql1 = "UPDATE users SET _state = '0' WHERE user_id = :id";
+$consult1 = $conection->prepare($sql1);
 $consult1->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
 $consult1->execute();
 
-$sql = "UPDATE noticies SET _state = '0' WHERE user_id = :id";
-$consult2 = $conection->prepare($sql);
+$sql2 = "UPDATE noticies SET _state = '0' WHERE user_id = :id";
+$consult2 = $conection->prepare($sql2);
 $consult2->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
 $consult2->execute();
 

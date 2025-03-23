@@ -7,13 +7,13 @@ if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-if (isset($_POST['btn-cadastrar'])) {
+if (isset($_POST['user-cadastre'])) {
   $inputs = [
-    "name" => $_POST['txtnome'],
-    "surname" => $_POST['txtsobrenome'],
-    "gender" => $_POST['txtgenero'],
-    "email " => $_POST['txtemail'],
-    "password" => password_hash($_POST['txtpassword'], PASSWORD_DEFAULT),
+    "name" => $_POST['name'],
+    "surname" => $_POST['surname'],
+    "gender" => $_POST['gender'],
+    "email " => $_POST['email'],
+    "password" => password_hash($_POST['password'], PASSWORD_DEFAULT),
     "date" => Date("Y-m-d H:i:s"),
   ];
 
@@ -92,17 +92,17 @@ if (isset($_POST['btn-cadastrar'])) {
         <div id="row1">
           <p class="widthTotal">
             <label>Nome: </label>
-            <input type="text" name="txtnome" placeholder="Insira o nome" required>
+            <input type="text" name="name" placeholder="Insira o nome" required>
           </p>
 
           <p class="widthTotal">
             <label>Sobrenome: </label>
-            <input type="text" name="txtsobrenome" placeholder="Insira o sobrenome" required>
+            <input type="text" name="surname" placeholder="Insira o sobrenome" required>
           </p>
 
           <p class="widthTotal">
             <label>Gênero: </label>
-            <select name="txtgenero">
+            <select name="gender">
               <option value="masculino">Masculino</option>
               <option value="femenino">Femenino</option>
             </select>
@@ -117,7 +117,7 @@ if (isset($_POST['btn-cadastrar'])) {
 
           <p class="widthTotal">
             <label>Senha: </label>
-            <input type="password" name="txtpassword" placeholder="Ditgite a sua senha" required>
+            <input type="password" name="password" placeholder="Ditgite a sua senha" required>
           </p>
           <p class="widthTotal">
 
@@ -126,7 +126,7 @@ if (isset($_POST['btn-cadastrar'])) {
 
         <div id="buttons">
           <a href="#" id="cadastrar">
-            <button type="submit" name="btn-cadastrar">cadastrar</button>
+            <button type="submit" name="user_cadastre">cadastrar</button>
           </a>
 
           <a href="usuarios.php" id="voltar">

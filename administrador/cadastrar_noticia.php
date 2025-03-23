@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/signNews.php";
 
 if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
@@ -8,15 +9,16 @@ if (!isset($_SESSION['logged'])) {
 
 $id = $_SESSION['id'];
 
-if (isset($_POST['btn-cadastrar'])) {
-  $titulo = $_POST['txtnoticia'];
-  $descricao = $_POST['txtdescricao'];
-  $img = $_POST['txtimagem'];
-  $categoria = $_POST['txtcategoria'];
+if (isset($_POST['notice_cadastre'])) {
+  $inputs = [
+    "notice_title" => $_POST['notice_title'],
+    "notice_text" => $_POST['notice_text'], 
+    "image" => $_POST['image'],
+    "category" => $_POST['category']
+    "date" => Date("Y-m-d H:i:s"),
+  ];
 
-  $sql = "INSERT INTO noticies VALUES(default,'$titulo','$descricao','$img','1','$categoria','$id',now(),now())";
-  $result = $ligation->prepare($sql);
-  $result->execute();
+  $result = signNews($conection, $inputs)
 
   if ($result) {
     header('Location:ver_noticia.php');
@@ -91,7 +93,7 @@ if (isset($_POST['btn-cadastrar'])) {
         <div id="row1">
           <p class="width400">
             <label>Imagem: </label>
-            <select name="txtimagem" class="height40">
+            <select name="image" class="height40">
               <option value="">Escolha a imagem</option>
               <optgroup label="Sports">
                 <option value="../imagem/sport01.jpg">
@@ -222,10 +224,10 @@ if (isset($_POST['btn-cadastrar'])) {
           </p>
           <p class="width400">
             <label>Categoria: </label>
-            <select name="txtcategoria" class="height40">
+            <select name="category" class="height40">
               <option value="">Escolha a categoria</option>
               <?php
-              $sql = "SELECT * FROM categorias";
+              $sql = "SELECT * FROM categories";
               $result = $ligation->prepare($sql);
               $result->execute();
               $data = $result->fetchall(PDO::FETCH_ASSOC);
@@ -233,8 +235,8 @@ if (isset($_POST['btn-cadastrar'])) {
               if (count($data) > 0) {
                 for ($l = 0; $l < count($data); $l++) {
                   ?>
-                  <option value="<?= $data[$l]['id_categoria']; ?>">
-                    <?= $data[$l]['nome_categoria']; ?>
+                  <option value="<?= $data[$l]['category_id']; ?>">
+                    <?= $data[$l]['name_category']; ?>
                   </option>
 
                 <?php }
@@ -246,20 +248,20 @@ if (isset($_POST['btn-cadastrar'])) {
         <div id="row1">
           <p class="widthTotal">
             <label>Título-da-notícia: </label>
-            <textarea name="txtnoticia" placeholder="Insira o título da notícia" required></textarea>
+            <textarea name="notice_title" placeholder="Insira o título da notícia" required></textarea>
           </p>
         </div>
 
         <div id="row1">
           <p class="widthTotal">
             <label>Descrição: </label>
-            <textarea name="txtdescricao" placeholder="Descreve a noticia" required></textarea>
+            <textarea name="notice_text" placeholder="Descreve a noticia" required></textarea>
           </p>
         </div>
 
         <div id="buttons">
           <a href="#" id="cadastrar">
-            <button type="submit" name="btn-cadastrar">cadastrar</button>
+            <button type="submit" name="notice_cadastre">cadastrar</button>
           </a>
 
           <a href="ver_noticia.php" id="voltar">
