@@ -1,17 +1,13 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/getNew.php";
 
 if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$_SESSION['notice_id'] = $_POST['notice_id'];
-$sql = "SELECT * FROM noticies AS n INNER JOIN categories AS c ON n.category_id = c.category_id WHERE _state = '1' AND notice_id = :id";
-$consult = $conection->prepare($sql);
-$consult->bindParam(":id", $_SESSION['notice_id'], PDO::PARAM_STR);
-$consult->execute();
-$data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
+$data = getNew($conection);
 ?>
 
 <!DOCTYPE html>

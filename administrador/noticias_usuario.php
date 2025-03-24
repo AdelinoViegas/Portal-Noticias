@@ -1,15 +1,13 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/getUsers.php";
 
 if (!isset($_SESSION['logado'])) {
   header("Location: ../index.php");
 }
 
-$sql = "SELECT * FROM users WHERE painel = 'user'";
-$result = $ligation->prepare($sql);
-$result->execute();
-$data = $result->fetchall(PDO::FETCH_ASSOC);
+$data = getUsers($conection);
 
 if (isset($_POST['notice_see'])) {
   if ($_POST['txtUser'] === "") {

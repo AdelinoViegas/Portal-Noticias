@@ -112,7 +112,7 @@ if (isset($_POST['user-cadastre'])) {
         <div id="row2">
           <p class="widthTotal">
             <label>E-mail: </label>
-            <input type="email" name="txtemail" placeholder="Exemplo@gmail.com" required>
+            <input type="email" name="email" placeholder="Exemplo@gmail.com" required>
           </p>
 
           <p class="widthTotal">

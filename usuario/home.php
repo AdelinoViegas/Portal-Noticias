@@ -2,7 +2,7 @@
 session_start();
 require_once "../conection.php";
 require_once "../features/getCategories.php";
-require_once "../features/getNews.php";
+require_once "../features/getNewsByCategory.php";
 
 if (!isset($_SESSION['logged'])) {
 	header("Location: ../index.php");
@@ -111,7 +111,7 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 				<h2>Political</h2>
 
 				<?php
-				$data = getNews($conection, "political");
+				$data = getNewsByCategoryByCategory($conection, "political");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -138,7 +138,7 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 				<h2>Entertainment</h2>
 
 				<?php
-				$data = getNews($conection, "entertainment");
+				$data = getNewsByCategory($conection, "entertainment");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -165,7 +165,7 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 			<div class="Business">
 				<h2>Business</h2>
 				<?php
-				$data = getNews($conection, "business");
+				$data = getNewsByCategory($conection, "business");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -190,7 +190,7 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 			<div class="Culture">
 				<h2>Culture</h2>
 				<?php
-				$data = getNews($conection, "culture");
+				$data = getNewsByCategory($conection, "culture");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -217,7 +217,7 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 				<h2>Sports</h2>
 
 				<?php
-				$data = getNews($conection, "sports");
+				$data = getNewsByCategory($conection, "sports");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {
@@ -243,7 +243,7 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 				<h2>Life & Style</h2>
 
 				<?php
-				$data = getNews($conection, "life & style");
+				$data = getNewsByCategory($conection, "life & style");
 
 				if (count($data) > 0) {
 					for ($l = 0; $l < count($data); $l++) {

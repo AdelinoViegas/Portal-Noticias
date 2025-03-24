@@ -1,17 +1,13 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/getUser.php";
 
 if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$_SESSION['user_id'] = $_POST['user_id'];
-$sql = "SELECT * FROM users WHERE user_id = :id";
-$consult = $conection->prepare($sql);
-$consult->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
-$consult->execute();
-$data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
+$data = getUser($conection);
 ?>
 
 <!DOCTYPE html>
