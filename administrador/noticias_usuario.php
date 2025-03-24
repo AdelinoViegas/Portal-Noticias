@@ -7,7 +7,8 @@ if (!isset($_SESSION['logado'])) {
   header("Location: ../index.php");
 }
 
-$data = getUsers($conection);
+$sql = "SELECT * FROM users WHERE painel = 'user'";
+$data = getUsers($conection, $sql);
 
 if (isset($_POST['notice_see'])) {
   if ($_POST['txtUser'] === "") {

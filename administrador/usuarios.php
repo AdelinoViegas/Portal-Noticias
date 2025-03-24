@@ -7,10 +7,7 @@ if (!isset($_SESSION['logged'])) {
 }
 
 $sql = "SELECT * FROM users WHERE _state = '1' AND painel = 'user'";
-$result = $conection->prepare($sql);
-$result->execute();
-$data = $result->fetchall(PDO::FETCH_ASSOC);
-
+$data = getUsers($conection, $sql);
 ?>
 
 <!DOCTYPE html>
