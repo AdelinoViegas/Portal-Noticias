@@ -1,9 +1,9 @@
 <?php
 
 function getUser($conection){
-    $sql = "SELECT * FROM users WHERE user_id = :id";
-    $consult = $conection->prepare($sql);
-    $consult->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
-    $consult->execute();
-    return $consult->fetchall(PDO::FETCH_ASSOC)[0];
+  $sql = "SELECT * FROM users WHERE user_id = :id";
+  $consult = $conection->prepare($sql);
+  $consult->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
+  $consult->execute();
+  return $consult->fetchall(PDO::FETCH_ASSOC)[0];
 }

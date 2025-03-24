@@ -2,7 +2,7 @@
 session_start();
 require_once "../conection.php";
 require_once "../features/getCategories.php";
-require_once "../features/getNews.php";
+require_once "../features/getNewsByCategory.php";
 
 if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
@@ -80,7 +80,7 @@ $categories = getCategories($conection);
 
   <section class="category">
     <?php
-    $data = getNews($conection, "life & style");
+    $data = getNewsByCategory($conection, "life & style");
 
     if (count($data) > 0) {
       for ($l = 0; $l < count($data); $l++) {
