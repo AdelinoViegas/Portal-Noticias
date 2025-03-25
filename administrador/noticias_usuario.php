@@ -3,9 +3,8 @@ session_start();
 require_once "../conection.php";
 require_once "../features/getUsers.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logado']))
   header("Location: ../index.php");
-}
 
 $sql = "SELECT * FROM users WHERE painel = 'user'";
 $data = getUsers($conection, $sql);
@@ -90,7 +89,6 @@ if (isset($_POST['notice_see'])) {
             <select name="txtUser" required>
               <option value="" class="font">Escolha um usuario</option>
               <?php
-
               if (count($data) > 0) {
                 for ($l = 0; $l < count($data); $l++) {
                   ?>

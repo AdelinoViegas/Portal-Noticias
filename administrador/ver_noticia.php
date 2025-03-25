@@ -2,9 +2,8 @@
 session_start();
 require_once "../conection.php";
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
-}
 
 $data = getCategories($conection);
 ?>

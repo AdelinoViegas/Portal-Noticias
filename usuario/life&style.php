@@ -4,9 +4,8 @@ require_once "../conection.php";
 require_once "../features/getCategories.php";
 require_once "../features/getNewsByCategory.php";
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
-}
 
 $categories = getCategories($conection);
 ?>
