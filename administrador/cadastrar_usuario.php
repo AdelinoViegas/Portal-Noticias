@@ -19,9 +19,8 @@ if (isset($_POST['user-cadastre'])) {
 
   signUser($conection, $inputs);
 
-  if ($result) {
+  if ($result) 
     header('Location:usuarios.php');
-  }
 }
 ?>
 

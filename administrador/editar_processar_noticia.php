@@ -3,9 +3,8 @@ session_start();
 require_once "../conexao.php";
 require_once "../features/editNews.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logado']))
   header("Location: ../index.php");
-}
 
 if (isset($_POST['notice_update'])) {
   $notice_title = $_POST['notice_title'];
@@ -21,7 +20,6 @@ if (isset($_POST['notice_update'])) {
     $date
   );
   
-  if ($result) {
+  if ($result) 
     header('Location:ver_noticia.php');
-  }
 }

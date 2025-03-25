@@ -3,9 +3,8 @@ session_start();
 require_once "../conection.php";
 require_once "../features/getNew.php";
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged'])) 
   header("Location: ../index.php");
-}
 
 $data = getNew($conection);
 ?>

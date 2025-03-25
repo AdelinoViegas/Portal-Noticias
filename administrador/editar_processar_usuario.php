@@ -3,9 +3,8 @@ session_start();
 require_once "../conection.php";
 require_once "../features/editUser.php";
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged'])) 
   header("Location: ../index.php");
-}
 
 if (isset($_POST['user_update'])) {
   $name = $_POST['name'];
@@ -25,7 +24,6 @@ if (isset($_POST['user_update'])) {
     $date
   );
 
-  if ($result) {
+  if ($result)
     header('Location:usuarios.php');
-  }
 }

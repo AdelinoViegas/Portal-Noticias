@@ -3,9 +3,8 @@ session_start();
 require_once "../conection.php";
 require_once "../features/getUser.php";
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
-}
 
 $data = getUser($conection);
 ?>
@@ -90,11 +89,8 @@ $data = getUser($conection);
           <p class="widthTotal">
             <label>Gênero: </label>
             <select name="gender" value="<?= $data['gender']; ?>" required>
-
               <?php
-              $gender = $dados['gender'];
-
-              if ($gender === 'masculino') {
+              if ($data['gender'] === 'masculino') {
                 ?>
                 <option value="<?= $data['gender']; ?>">Masculino</option>
                 <option value="Femenino">Femenino</option>

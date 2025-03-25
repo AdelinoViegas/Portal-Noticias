@@ -2,9 +2,8 @@
 session_start();
 require_once "../conection.php";
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged'])) 
   header("Location: ../index.php");
-}
 
 $_SESSION['notice_id'] = $_POST['notice_id'];
 $sql = "UPDATE noticies SET _state = '0' WHERE notice_id = :id";

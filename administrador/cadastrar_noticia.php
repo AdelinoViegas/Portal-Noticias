@@ -7,8 +7,6 @@ if (!isset($_SESSION['logged'])) {
   header("Location: ../index.php");
 }
 
-$id = $_SESSION['id'];
-
 if (isset($_POST['notice_cadastre'])) {
   $inputs = [
     "notice_title" => $_POST['notice_title'],
@@ -20,9 +18,8 @@ if (isset($_POST['notice_cadastre'])) {
 
   $result = signNews($conection, $inputs)
 
-  if ($result) {
+  if ($result) 
     header('Location:ver_noticia.php');
-  }
 }
 ?>
 
