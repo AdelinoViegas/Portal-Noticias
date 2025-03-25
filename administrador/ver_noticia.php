@@ -85,7 +85,6 @@ $data = getCategories($conection);
                 $date = $data[$l]['date_cadastre'];
                 $date = strtotime($date);
                 $datetime = date('d/m/Y H:i:s', $date);
-
                 echo $datetime; ?></td>
                 <td id="edit">
                   <form action="editar_noticia.php" method="post">
