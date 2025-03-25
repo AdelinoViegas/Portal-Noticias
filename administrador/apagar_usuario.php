@@ -17,6 +17,5 @@ $consult2 = $conection->prepare($sql2);
 $consult2->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
 $consult2->execute();
 
-if ($consult1 && $consult2) {
+if ($consult1 && $consult2) 
   header('Location: usuarios.php');
-}

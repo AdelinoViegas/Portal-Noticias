@@ -12,6 +12,5 @@ $consult = $conection->prepare($sql);
 $consult->bindParam(":id", $_SESSION['notice_id'], PDO::PARAM_STR);
 $consutt->execute();
 
-if ($consult) {
+if ($consult) 
   header('Location: ver_noticia.php');
-}
