@@ -20,11 +20,11 @@ if (isset($_POST['enviar-dados'])) {
       $passwordCripto = $hash;
   }
 
-  $sql = "SELECT * FROM users WHERE email LIKE ? AND 
-       _password LIKE ?";
+  $sql = "SELECT * FROM users WHERE email LIKE :email AND 
+       _password LIKE :_passaword";
   $consult = $conection->prepare($sql);
-  $consult->bindParam(1, $email, PDO::PARAM_STR);
-  $consult->bindParam(2, $passwordCripto, PDO::PARAM_STR);
+  $consult->bindParam(":email", $email, PDO::PARAM_STR);
+  $consult->bindParam(":_password", $passwordCripto, PDO::PARAM_STR);
   $consult->execute();
   $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 
@@ -66,9 +66,8 @@ if (isset($_POST['enviar-dados'])) {
     </div>
     <?php
     if (!empty($errors)) {
-      foreach ($errors as $value) {
+      foreach ($errors as $value)
         echo "<h3 style='margin-top:10px'> $value </h3><br>";
-      }
     }
     ?>
     <form id="formulario" action="index.php" method="post">
