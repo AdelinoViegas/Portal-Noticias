@@ -16,9 +16,8 @@ if (isset($_POST['enviar-dados'])) {
   if (count($user) > 0) {
     $hash = $user['_password'];
 
-    if (password_verify($password, $hash)) {
+    if (password_verify($password, $hash))
       $passwordCripto = $hash;
-    }
   }
 
   $sql = "SELECT * FROM users WHERE email LIKE ? AND 
