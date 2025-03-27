@@ -2,11 +2,11 @@
 session_start();
 require_once "conection.php";
 
-if (isset($_POST['enviar-dados'])) {
+if (isset($_POST['login'])) {
   global $passwordCripto;
   $errors = array();
-  $email = filter_input(INPUT_POST, 'txtemail', FILTER_SANITIZE_EMAIL);
-  $password = filter_input(INPUT_POST, 'txtpassword', FILTER_SANITIZE_SPECIAL_CHARS);
+  $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+  $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
   $consult = $conection->prepare("SELECT * FROM users WHERE email = :email");
   $consult->bindParam(":email", $email, PDO::PARAM_STR);
@@ -73,18 +73,18 @@ if (isset($_POST['enviar-dados'])) {
     <form id="formulario" action="index.php" method="post">
       <p>
         <label>E-mail</label><br>
-        <input type="text" id="textemail" name="txtemail" placeholder="informe o seu e-mail">
+        <input type="text" id="textemail" name="email" placeholder="informe o seu e-mail">
       </p>
 
       <p>
         <label>Password</label><br>
-        <input type="password" id="textpassword" name="txtpassword" placeholder="Digite uma senha">
+        <input type="password" id="textpassword" name="password" placeholder="Digite uma senha">
       </p>
 
       <p>
-        <input type="submit" name="enviar-dados" value="Entrar">
+        <input type="submit" name="login" value="Entrar">
       </p>
     </form>
   </div>
 </body>
-</html>
+</html>             
