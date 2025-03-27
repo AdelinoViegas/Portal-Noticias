@@ -3,9 +3,8 @@ session_start();
 require_once "../conection.php";
 require_once "../features/signNews.php";
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
-}
 
 if (isset($_POST['notice_cadastre'])) {
   $inputs = [
