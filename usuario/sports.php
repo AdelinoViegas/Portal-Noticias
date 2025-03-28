@@ -13,7 +13,7 @@ $categories = getCategories($conection);
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<title>sports</title>
+	<title>Sports</title>
 	<?php require_once "../head.php"; ?>
 </head>
 <body>

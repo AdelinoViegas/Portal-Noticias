@@ -15,7 +15,7 @@ $categories = getCategories($conection);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>life&style</title>
+  <title>Life&Style</title>
   <?php require_once "../head.php"; ?>
 </head>
 <body>

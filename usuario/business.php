@@ -13,7 +13,7 @@ $categories = getCategories($conection);
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <title>business</title>
+  <title>Business</title>
   <?php require_once "../head.php"; ?>
 </head>
 <body>
@@ -82,7 +82,7 @@ $categories = getCategories($conection);
 
   <section class="category">
     <?php
-      $data = getNewsByCategory($conection, "business");
+    $data = getNewsByCategory($conection, "business");
 
     if (count($data) > 0) {
       for ($l = 0; $l < count($data); $l++) {

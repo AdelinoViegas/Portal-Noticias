@@ -13,7 +13,7 @@ $categories = getCategories($conection);
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-	<title>political</title>
+	<title>Political</title>
 	<?php require_once "../head.php"; ?>
 </head>
 <body>
