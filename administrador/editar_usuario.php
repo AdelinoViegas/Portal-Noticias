@@ -131,5 +131,5 @@ $data = getUser($conection);
     </div>
   </div>
   </div>
-</body>
+</body>]
 </html>

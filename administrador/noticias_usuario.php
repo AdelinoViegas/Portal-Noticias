@@ -3,14 +3,16 @@ session_start();
 require_once "../conection.php";
 require_once "../features/getUsers.php";
 
-if (!isset($_SESSION['logado']))
+if (!isset($_SESSION['logado'])) {
   header("Location: ../index.php");
 
-$sql = "SELECT * FROM users WHERE painel = 'user'";
-$data = getUsers($conection, $sql);
+$sql = "SELECT * FROM usuarios WHERE painel = 'user'";
+$result = $ligation->prepare($sql);
+$result->execute();
+$data = $result->fetchall(PDO::FETCH_ASSOC);
 
-if (isset($_POST['notice_see'])) {
-  if ($_POST['txtUser'] === "") {
+if (isset($_POST['btn-cadastrar'])) {
+  if ($_POST['txtgenero'] === "") {
     header('Location: noticia_usuario.php');
   } else {
     $_SESSION['user_id'] = $_POST['txtUser'];

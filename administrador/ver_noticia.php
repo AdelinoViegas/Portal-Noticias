@@ -1,11 +1,14 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/getCategories.php";
 
 if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
 
 $data = getCategories($conection);
+print_r($data);
+die();
 ?>
 
 <!DOCTYPE html>
