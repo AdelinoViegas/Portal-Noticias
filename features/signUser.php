@@ -2,7 +2,7 @@
 
 function signUser($conection, $inputs){
   try{
-    $sql = "INSERT INTO usuarios VALUES(default, :_name, :surname, :email, :_password, :gender, '1', 'user', :_date, :_date)";
+    $sql = "INSERT INTO users VALUES(default, :_name, :surname, :email, :_password, :gender, '1', 'user', :_date, :_date)";
     $consult = $conection->prepare($sql);
 
     if(!$consult)

@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged']))
 	header("Location: ../index.php");
 
 $categories = getCategories($conection);
-$sql = "SELECT * FROM news AS n INNER JOIN categories AS c ON n.category_id = c.category_id WHERE _state = '1' AND user_id = :id Limit 1";
+$sql = "SELECT * FROM news AS n INNER JOIN categories AS c ON n.n_category_id = c.c_id WHERE n_state = '1' AND n_user_id = :id Limit 1";
 $consult = $conection->prepare($sql);
 $consult->bindParam(":id", $_SESSION['user_id'], PDO::PARAM_STR);
 $consult->execute();
@@ -69,13 +69,13 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 	</header>
 	<?php
 	if (count($data) > 0) {
-		if ($data['category_name'] === 'life & style') {
-			$data['category_name'] = 'life&style';
+		if ($data['c_name'] === 'life & style') {
+			$data['c_name'] = 'life&style';
 		}
 		?>
 		<section class="banner">
-			<a href="<?= $data['category_name'] . '.php#' . $data['news_id']; ?>">
-				<img src="<?= $data['image']; ?>" alt="imgNoticeMain">
+			<a href="<?= $data['c_name'] . '.php#' . $data['n_id']; ?>">
+				<img src="<?= $data['n_image']; ?>" alt="imgNoticeMain">
 			</a>
 		</section>
 
@@ -83,15 +83,15 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 			<div class="barra_red">
 				<div id="text1">DESTAQUE</div>
 				<div id="icon">></div>
-				<a href="<?= $data['category_name'] . '.php#' . $data['news_id']; ?>">
-					<h3 id="text2"><?= $data['news_title']; ?>
+				<a href="<?= $data['c_name'] . '.php#' . $data['n_id']; ?>">
+					<h3 id="text2"><?= $data['n_title']; ?>
 					</h3>
 				</a>
 			</div>
 		</div>
 	<?php } else { ?>
 		<section class="banner">
-			<img src="../imagem/s2750.jpg" alt="imgBanner">
+			<img src="../n_imagem/s2750.jpg" alt="imgBanner">
 		</section>
 
 		<div class="barra_bottom">
@@ -115,12 +115,12 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="political.php#<?= $data[$l]['news_id']; ?>">
-								<img src="<?= $data[$l]['image']; ?>" alt="imgPolitical">
+							<a href="political.php#<?= $data[$l]['n_id']; ?>">
+								<img src="<?= $data[$l]['n_image']; ?>" alt="imgPolitical">
 							</a>
 
-							<a href="political.php#<?= $data[$l]['news_id']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['news_title']; ?>
+							<a href="political.php#<?= $data[$l]['n_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['n_title']; ?>
 								</h3>
 							</a>
 						</div>
@@ -142,12 +142,12 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="entertainment.php#<?= $data[$l]['news_id']; ?>">
-								<img src="<?= $data[$l]['image']; ?>" alt="imgEntertainment">
+							<a href="entertainment.php#<?= $data[$l]['n_id']; ?>">
+								<img src="<?= $data[$l]['n_image']; ?>" alt="imgEntertainment">
 							</a>
 
-							<a href="entertainment.php#<?= $data[$l]['news_id']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['news_title']; ?></h3>
+							<a href="entertainment.php#<?= $data[$l]['n_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['n_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -169,12 +169,12 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="business.php#<?= $data[$l]['news_id']; ?>">
-								<img src="<?= $data[$l]['image']; ?>" alt="imgBusiness">
+							<a href="business.php#<?= $data[$l]['n_id']; ?>">
+								<img src="<?= $data[$l]['n_image']; ?>" alt="imgBusiness">
 							</a>
 
-							<a href="business.php#<?= $data[$l]['news_id']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['news_title']; ?></h3>
+							<a href="business.php#<?= $data[$l]['n_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['n_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -194,11 +194,11 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="culture.php#<?= $data[$l]['news_id']; ?>">
-								<img src="<?= $data[$l]['image']; ?>" alt="imgCulture">
+							<a href="culture.php#<?= $data[$l]['n_id']; ?>">
+								<img src="<?= $data[$l]['n_image']; ?>" alt="imgCulture">
 							</a>
-							<a href="culture.php#<?= $data[$l]['news_id']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['news_title']; ?></h3>
+							<a href="culture.php#<?= $data[$l]['n_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['n_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -221,12 +221,12 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="sports.php#<?= $data[$l]['news_id']; ?>">
-								<img src="<?= $data[$l]['image']; ?>" alt="imgSports">
+							<a href="sports.php#<?= $data[$l]['n_id']; ?>">
+								<img src="<?= $data[$l]['n_image']; ?>" alt="imgSports">
 							</a>
 
-							<a href="sports.php#<?= $data[$l]['news_id']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['news_title']; ?></h3>
+							<a href="sports.php#<?= $data[$l]['n_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['n_title']; ?></h3>
 							</a>
 						</div>
 					<?php }
@@ -247,12 +247,12 @@ $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
 					for ($l = 0; $l < count($data); $l++) {
 						?>
 						<div>
-							<a href="life&style.php#<?= $data[$l]['news_id']; ?>">
-								<img src="<?= $data[$l]['image']; ?>" alt="imgLife&Style">
+							<a href="life&style.php#<?= $data[$l]['n_id']; ?>">
+								<img src="<?= $data[$l]['n_image']; ?>" alt="imgLife&Style">
 							</a>
 
-							<a href="life&style.php#<?= $data[$l]['news_id']; ?>">
-								<h3 id="describe_notice"><?= $data[$l]['news_title']; ?></h3>
+							<a href="life&style.php#<?= $data[$l]['n_id']; ?>">
+								<h3 id="describe_notice"><?= $data[$l]['n_title']; ?></h3>
 							</a>
 						</div>
 					<?php }

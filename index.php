@@ -15,17 +15,17 @@ if (isset($_POST['login'])) {
   
 
   if (count($user) > 0) {
-    $hash = $user['password'];
+    $hash = $user['u_password'];
   
     if (password_verify($password, $hash))
       $passwordCripto = $hash;
   }
 
   $sql = "SELECT * FROM users WHERE u_email = :email AND 
-    u_password = :passaword";
+    u_password = :_password";
   $consult = $conection->prepare($sql);
   $consult->bindParam(":email", $email, PDO::PARAM_STR);
-  $consult->bindParam(":password", $passwordCripto, PDO::PARAM_STR);
+  $consult->bindParam(":_password", $passwordCripto, PDO::PARAM_STR);
   $consult->execute();
   $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
   
