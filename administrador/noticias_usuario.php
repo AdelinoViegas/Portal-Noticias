@@ -3,19 +3,19 @@ session_start();
 require_once "../conection.php";
 require_once "../features/getUsers.php";
 
-if (!isset($_SESSION['logado'])) {
+if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
 
-$sql = "SELECT * FROM usuarios WHERE painel = 'user'";
-$result = $ligation->prepare($sql);
+$sql = "SELECT * FROM users WHERE u_painel = 'user' AND u_state = '1'";
+$result = $conection->prepare($sql);
 $result->execute();
 $data = $result->fetchall(PDO::FETCH_ASSOC);
 
-if (isset($_POST['btn-cadastrar'])) {
-  if ($_POST['txtgenero'] === "") {
+if (isset($_POST['news_see'])) {
+  if ($_POST['user'] === "") {
     header('Location: noticia_usuario.php');
   } else {
-    $_SESSION['user_id'] = $_POST['txtUser'];
+    $_SESSION['user_id'] = $_POST['user'];
     header('Location: ver_noticia.php');
   }
 }
@@ -85,18 +85,18 @@ if (isset($_POST['btn-cadastrar'])) {
   <div id="container">
     <div id="info">
       <form action="noticias_usuario.php" method="post">
-        <div id="row1">
+        <div id="row2">
           <p class="width400">
             <label>Usuarios: </label>
-            <select name="txtUser" required>
+            <select name="user" required>
               <option value="" class="font">Escolha um usuario</option>
               <?php
               if (count($data) > 0) {
                 for ($l = 0; $l < count($data); $l++) {
                   ?>
-                  <option value="<?= $data[$l]['user_id']; ?>">
+                  <option value="<?= $data[$l]['u_id']; ?>">
 
-                    <?= $data[$l]['name'] . ' ' . $data[$l]['last_name']; ?>
+                    <?= $data[$l]['u_name']?>
                   </option>
                 <?php }
               } ?>
@@ -105,7 +105,7 @@ if (isset($_POST['btn-cadastrar'])) {
         </div>
 
         <div id="buttons">
-          <button type="submit" name="notice_see">Notícias</button>
+          <button type="submit" name="news_see">Notícias</button>
         </div>
       </form>
     </div>

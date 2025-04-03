@@ -84,10 +84,10 @@ $categories = getCategories($conection);
     if (count($data) > 0) {
       for ($l = 0; $l < count($data); $l++) {
         ?>
-        <div id="<?= $data[$l]['id_noticia']; ?>" class="notice">
-          <img id="img_notice" src="<?= $data[$l]['imagem']; ?>" alt="imagemNotice">
-          <h1><?= $data[$l]['titulo_noticia']; ?></h1>
-          <p><?= $data[$l]['texto_noticia']; ?></p>
+        <div id="<?= $data[$l]['n_id']; ?>" class="notice">
+          <img id="img_notice" src="<?= $data[$l]['n_image']; ?>" alt="imagemNotice">
+          <h1><?= $data[$l]['n_title']; ?></h1>
+          <p><?= $data[$l]['n_text']; ?></p>
         </div>
       <?php }
     } ?>

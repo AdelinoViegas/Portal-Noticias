@@ -209,45 +209,45 @@ $data = getNew($conection);
           <p class="width400">
             <label>Categoria: </label>
             <select name="txtcategoria" class="height40" required>
-              <?php $category = $data['category_name'];
+              <?php $category = $data['c_name'];
               if ($category == 'sports') {
                 ?>
-                <option value="<?= $data['category_name']; ?>">Sports</option>
+                <option value="<?= $data['c_name']; ?>">Sports</option>
                 <option value="life & style">Life & style</option>
                 <option value="political">Political</option>
                 <option value="entertainment">Entertainment</option>
                 <option value="business">Business</option>
                 <option value="culture">Culture</option>
               <?php } else if ($category == 'culture') { ?>
-                  <option value="<?= $data['category_name']; ?>">Culture</option>
+                  <option value="<?= $data['c_name']; ?>">Culture</option>
                   <option value="life & style">Life & style</option>
                   <option value="political">Political</option>
                   <option value="entertainment">Entertainment</option>
                   <option value="business">Business</option>
                   <option value="sports">Sports</option>
               <?php } else if ($category == 'entertainment') { ?>
-                    <option value="<?= $data['category_name']; ?>">Entertainment</option>
+                    <option value="<?= $data['c_name']; ?>">Entertainment</option>
                     <option value="life & style">Life & style</option>
                     <option value="political">Political</option>
                     <option value="sports">Sports</option>
                     <option value="business">Business</option>
                     <option value="culture">Culture</option>
               <?php } else if ($category == 'life & style') { ?>
-                      <option value="<?= $data['category_name']; ?>">Life & Style</option>
+                      <option value="<?= $data['c_name']; ?>">Life & Style</option>
                       <option value="entertainment">Entertainment</option>
                       <option value="political">Political</option>
                       <option value="sports">Sports</option>
                       <option value="business">Business</option>
                       <option value="culture">Culture</option>
               <?php } else if ($category == 'business') { ?>
-                        <option value="<?= $data['category_name']; ?>">Businesss</option>
+                        <option value="<?= $data['c_name']; ?>">Businesss</option>
                         <option value="life & style">Life & style</option>
                         <option value="political">Political</option>
                         <option value="sports">Sports</option>
                         <option value="entertainment">Entertainment</option>
                         <option value="culture">Culture</option>
               <?php } else if ($category == 'political') { ?>
-                          <option value="<?= $data['category_name']; ?>">Political</option>
+                          <option value="<?= $data['c_name']; ?>">Political</option>
                           <option value="life & style">Life & style</option>
                           <option value="entertainment">Entertainment</option>
                           <option value="sports">Sports</option>
@@ -261,8 +261,8 @@ $data = getNew($conection);
         <div id="row1">
           <p class="widthTotal">
             <label>Título-da-notícia: </label>
-            <textarea name="notice_title" required>
-         <?= $data['notice_title']; ?>
+            <textarea name="news_title" required>
+         <?= $data['n_title']; ?>
        </textarea>
           </p>
         </div>
@@ -271,14 +271,14 @@ $data = getNew($conection);
           <p class="widthTotal">
             <label>Descrição: </label>
             <textarea name="description" required>
-           <?= $data['notice_text']; ?>
+           <?= $data['news_text']; ?>
          </textarea>
           </p>
         </div>
 
         <div id="buttons">
           <a href="#" id="cadastrar">
-            <button type="submit" name="notice_update">actualizar</button>
+            <button type="submit" name="news_update">actualizar</button>
           </a>
 
           <a href="ver_noticia.php" id="voltar">

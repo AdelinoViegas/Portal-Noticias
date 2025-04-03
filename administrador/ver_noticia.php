@@ -7,8 +7,7 @@ if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
 
 $data = getCategories($conection);
-print_r($data);
-die();
+
 ?>
 
 <!DOCTYPE html>
@@ -81,8 +80,8 @@ die();
             for ($l = 0; $l < count($data); $l++) {
               ?>
               <tr>
-                <td><?= $data[$l]['notice_title']; ?></td>
-                <td><?= $data[$l]['category_name']; ?></td>
+                <td><?= $data[$l]['n_title']; ?></td>
+                <td><?= $data[$l]['c_name']; ?></td>
                 <td><?php
                 $date = $data[$l]['date_cadastre'];
                 $date = strtotime($date);
@@ -90,14 +89,14 @@ die();
                 echo $datetime; ?></td>
                 <td id="edit">
                   <form action="editar_noticia.php" method="post">
-                    <input type="hidden" name="notice_id" value="<?= $data[$l]['notice_id']; ?>">
+                    <input type="hidden" name="news_id" value="<?= $data[$l]['news_id']; ?>">
                     <button id="edit1" type="submit">
                       <img src="img/edit.png">
                     </button>
                   </form>
 
                   <form action="apagar_noticia.php" method="post">
-                    <input type="hidden" name="notice_id" value="<?= $data[$l]['notice_id']; ?>">
+                    <input type="hidden" name="news_id" value="<?= $data[$l]['news_id']; ?>">
                     <button id="edit2" type="submit">
                       <img src="img/apagar.png">
                     </button>

@@ -1,11 +1,12 @@
 <?php
 session_start();
 require_once "../conection.php";
+require_once "../features/getUsers.php";
 
 if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
 
-$sql = "SELECT * FROM users WHERE _state = '1' AND painel = 'user'";
+$sql = "SELECT * FROM users WHERE u_state = '1' AND u_painel = 'user'";
 $data = getUsers($conection, $sql);
 ?>
 
@@ -68,7 +69,6 @@ $data = getUsers($conection, $sql);
         <thead>
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Sobrenome</th>
             <th scope="col">E-mail</th>
             <th scope="col">Genero</th>
             <th scope="col">painel</th>
@@ -81,21 +81,20 @@ $data = getUsers($conection, $sql);
             for ($l = 0; $l < count($data); $l++) {
               ?>
               <tr>
-                <td><?= $data[$l]['name']; ?></td>
-                <td><?= $data[$l]['last_name']; ?></td>
-                <td><?= $data[$l]['email']; ?></td>
-                <td><?= $data[$l]['gender']; ?></td>
-                <td><?= $data[$l]['painel']; ?></td>
+                <td><?= $data[$l]['u_name']; ?></td>
+                <td><?= $data[$l]['u_email']; ?></td>
+                <td><?= $data[$l]['u_gender']; ?></td>
+                <td><?= $data[$l]['u_painel']; ?></td>
                 <td id="edit">
                   <form action="editar_usuario.php" method="post">
-                    <input type="hidden" name="id_usuario" value="<?= $data[$l]['user_id']; ?>">
+                    <input type="hidden" name="user_id" value="<?= $data[$l]['u_id']; ?>">
                     <button id="edit1" type="submit">
                       <img src="img/edit.png">
                     </button>
                   </form>
 
                   <form action="apagar_usuario.php" method="post">
-                    <input type="hidden" name="id_usuario" value="<?= $data[$l]['user_id']; ?>">
+                    <input type="hidden" name="user_id" value="<?= $data[$l]['u_id']; ?>">
                     <button id="edit2" type="submit">
                       <img src="img/apagar.png">
                     </button>

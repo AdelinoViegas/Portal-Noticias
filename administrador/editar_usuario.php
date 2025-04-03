@@ -6,6 +6,7 @@ require_once "../features/getUser.php";
 if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
 
+$_SESSION['user_id'] = $_POST['user_id'];
 $data = getUser($conection);
 ?>
 
@@ -78,43 +79,35 @@ $data = getUser($conection);
         <div id="row1">
           <p class="widthTotal">
             <label>Nome: </label>
-            <input type="text" name="name" value="<?= $data['name']; ?>">
+            <input type="text" name="name" value="<?= $data['u_name']; ?>">
           </p>
 
           <p class="widthTotal">
-            <label>Sobrenome: </label>
-            <input type="text" name="last_name" value="<?= $data['last_name']; ?>">
+            <label>E-mail: </label>
+            <input type="email" name="email" value="<?= $data['u_email']; ?>">
           </p>
+        </div>
 
-          <p class="widthTotal">
+        <div id="row2">
+        <p class="widthTotal">
             <label>Gênero: </label>
-            <select name="gender" value="<?= $data['gender']; ?>" required>
+            <select name="gender" value="<?= $data['u_gender']; ?>" required>
               <?php
-              if ($data['gender'] === 'masculino') {
+              if ($data['u_gender'] === 'masculino') {
                 ?>
-                <option value="<?= $data['gender']; ?>">Masculino</option>
-                <option value="Femenino">Femenino</option>
+                <option value="<?= $data['u_gender']; ?>">Masculino</option>
+                <option value="femenino">Femenino</option>
               <?php } else { ?>
-                <option value="<?= $data['gender']; ?>">Femenino</option>
+                <option value="<?= $data['u_gender']; ?>">Femenino</option>
                 <option value="masculino">Masculino</option>
               <?php } ?>
             </select>
           </p>
 
-        </div>
-
-        <div id="row2">
-          <p class="widthTotal">
-            <label>E-mail: </label>
-            <input type="email" name="email" value="<?= $data['email']; ?>">
-          </p>
-
           <p class="widthTotal">
             <label>Senha: </label>
-            <input type="password" name="password" placeholder="alterar a senha">
-          </p>
-          <p class="widthTotal">
-
+            <input class="old_password" type="password" name="old_password" value="<?= $data['u_password']; ?>"/>
+            <input type="password" name="new_password" placeholder="alterar a senha">
           </p>
         </div>
 
@@ -131,5 +124,5 @@ $data = getUser($conection);
     </div>
   </div>
   </div>
-</body>]
+</body>
 </html>

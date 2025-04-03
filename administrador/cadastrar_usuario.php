@@ -6,17 +6,16 @@ require_once "../features/signUser.php";
 if (!isset($_SESSION['logged']))
   header("Location: ../index.php");
 
-if (isset($_POST['user-cadastre'])) {
+if (isset($_POST['user_cadastre'])) {
   $inputs = [
     "name" => $_POST['name'],
-    "surname" => $_POST['surname'],
     "gender" => $_POST['gender'],
     "email " => $_POST['email'],
     "password" => password_hash($_POST['password'], PASSWORD_DEFAULT),
     "date" => Date("Y-m-d H:i:s"),
   ];
 
-  signUser($conection, $inputs);
+  $result = signUser($conection, $inputs);
 
   if ($result) 
     header('Location:usuarios.php');
@@ -89,15 +88,17 @@ if (isset($_POST['user-cadastre'])) {
       <form action="cadastrar_usuario.php" method="post">
         <div id="row1">
           <p class="widthTotal">
-            <label>Nome: </label>
+            <label>Nome do usuário: </label>
             <input type="text" name="name" placeholder="Insira o nome" required>
           </p>
 
           <p class="widthTotal">
-            <label>Sobrenome: </label>
-            <input type="text" name="surname" placeholder="Insira o sobrenome" required>
+            <label>E-mail: </label>
+            <input type="email" name="email" placeholder="Exemplo@gmail.com" required>
           </p>
+        </div>
 
+        <div id="row2">
           <p class="widthTotal">
             <label>Gênero: </label>
             <select name="gender">
@@ -105,20 +106,10 @@ if (isset($_POST['user-cadastre'])) {
               <option value="femenino">Femenino</option>
             </select>
           </p>
-        </div>
-
-        <div id="row2">
-          <p class="widthTotal">
-            <label>E-mail: </label>
-            <input type="email" name="email" placeholder="Exemplo@gmail.com" required>
-          </p>
 
           <p class="widthTotal">
             <label>Senha: </label>
             <input type="password" name="password" placeholder="Ditgite a sua senha" required>
-          </p>
-          <p class="widthTotal">
-
           </p>
         </div>
 

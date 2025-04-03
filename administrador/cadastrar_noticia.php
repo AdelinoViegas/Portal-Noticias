@@ -8,8 +8,8 @@ if (!isset($_SESSION['logged']))
 
 if (isset($_POST['notice_cadastre'])) {
   $inputs = [
-    "notice_title" => $_POST['notice_title'],
-    "notice_text" => $_POST['notice_text'], 
+    "news_title" => $_POST['news_title'],
+    "newss_text" => $_POST['news_text'], 
     "image" => $_POST['image'],
     "category" => $_POST['category']
     "date" => Date("Y-m-d H:i:s"),

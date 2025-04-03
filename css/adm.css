@@ -161,8 +161,7 @@ img {
 #buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 40px;
+  margin: 40px 0px;
   text-decoration: none;
 }
 
@@ -223,7 +222,7 @@ img {
 }
 
 #container #info #row1 input,
-#container #info #row1 select,
+#container #info #row2 select,
 #container #info #row2 input {
   width: 100%;
   height: 40px;
@@ -264,7 +263,7 @@ img {
 #info #table {
   width: 100%;
   border-spacing: 0px;
-  margin-bottom: 30px;
+  margin: 50px 0px 30px 0px;
   font-family: arial;
 }
 
@@ -274,7 +273,12 @@ img {
   text-align: center;
 }
 
+#info #table thead tr th{
+  padding-bottom: 10px;
+}
+
 #info #table td {
+  text-align: center;
   padding: 15px 20px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -283,6 +287,7 @@ img {
 #info #table #edit {
   display: flex;
   column-gap: 6px;
+  justify-content: center;
 }
 
 #info #table #edit button {
@@ -309,4 +314,8 @@ footer {
   background-color: rgb(85, 85, 85);
   color: white;
   text-align: center;
+}
+
+.old_password{
+  display: none;
 }

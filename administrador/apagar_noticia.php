@@ -5,10 +5,10 @@ require_once "../conection.php";
 if (!isset($_SESSION['logged'])) 
   header("Location: ../index.php");
 
-$_SESSION['notice_id'] = $_POST['notice_id'];
-$sql = "UPDATE noticies SET _state = '0' WHERE notice_id = :id";
+$_SESSION['news_id'] = $_POST['news_id'];
+$sql = "UPDATE noticies SET n_state = '0' WHERE n_id = :id";
 $consult = $conection->prepare($sql);
-$consult->bindParam(":id", $_SESSION['notice_id'], PDO::PARAM_STR);
+$consult->bindParam(":id", $_SESSION['news_id'], PDO::PARAM_STR);
 $consutt->execute();
 
 if ($consult) 
