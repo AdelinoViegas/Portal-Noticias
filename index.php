@@ -8,40 +8,41 @@ if (isset($_POST['login'])) {
   $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
   $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
-  $consult = $conection->prepare("SELECT * FROM users WHERE email = :email");
+  $consult = $conection->prepare("SELECT * FROM users WHERE u_email = :email");
   $consult->bindParam(":email", $email, PDO::PARAM_STR);
   $consult->execute();
   $user = $consult->fetchall(PDO::FETCH_ASSOC)[0];
   
-  if (count($user) > 0) {
-    $hash = $user['_password'];
 
+  if (count($user) > 0) {
+    $hash = $user['password'];
+  
     if (password_verify($password, $hash))
       $passwordCripto = $hash;
   }
 
-  $sql = "SELECT * FROM users WHERE email LIKE :email AND 
-       _password LIKE :_passaword";
+  $sql = "SELECT * FROM users WHERE u_email = :email AND 
+    u_password = :passaword";
   $consult = $conection->prepare($sql);
   $consult->bindParam(":email", $email, PDO::PARAM_STR);
-  $consult->bindParam(":_password", $passwordCripto, PDO::PARAM_STR);
+  $consult->bindParam(":password", $passwordCripto, PDO::PARAM_STR);
   $consult->execute();
   $data = $consult->fetchall(PDO::FETCH_ASSOC)[0];
-
+  
   if (empty($email) || empty($password)) {
     $errors[] = "<span>O campo login e senha precisa ser preenchido</span>";
   } else {
     if (empty($data)) {
       $errors[] = "<span>Usuário enexistente</span>";
     } else {
-      if ($data['_password'] === $passwordCripto && $data['email'] === $email && $data['painel'] === 'admin') {
+      if ($data['u_password'] === $passwordCripto && $data['u_email'] === $email && $data['u_painel'] === 'admin') {
         $_SESSION['logged'] = true;
-        $_SESSION['adm_id'] = $data['user_id'];
+        $_SESSION['adm_id'] = $data['u_id'];
         header('Location: administrador/usuarios.php');
 
-      } elseif ($data['_password'] === $passwordCripto && $data['email'] === $email && $data['painel'] === 'user') {
+      } elseif ($data['u_password'] === $passwordCripto && $data['u_email'] === $email && $data['u_painel'] === 'user') {
         $_SESSION['logged'] = true;
-        $_SESSION['user_id'] = $data['user_id'];
+        $_SESSION['user_id'] = $data['u_id'];
         header('Location: usuario/home.php');
       }
     }
